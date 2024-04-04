@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title> Rainbow的网页</title>
-  </head>
-  <body>
-    <h1>hi</h1>
-    <h2>Rainbow的第一个网页</h2>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown Blog with LaTeX Support</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        #content {
+            width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>Markdown Blog</h1>
+        <textarea id="editor" rows="10" cols="50">
+### A Markdown Blog with LaTeX Support
+ 
+Here is an example of LaTeX math:
+ 
+$$
+\int_{0}^{\infty} \frac{x^2}{e^x + 1} dx
+$$
+        </textarea>
+        <button onclick="convert()">Convert</button>
+        <div id="output"></div>
+    </div>
+ 
+    <script>
+        function convert() {
+            var markdownText = document.getElementById('editor').value;
+            var html = marked(markdownText, {
+                sanitize: true
+            });
+            document.getElementById('output').innerHTML = html;
+        }
+    </script>
+</body>
 </html>
